@@ -4,8 +4,10 @@ from scipy.stats import mode
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 model = pickle.load(open("./model/diseaseprediction.pickle", "rb"))
 final_rf_model = pickle.load(open("./model/rf_model.pkl", "rb"))
