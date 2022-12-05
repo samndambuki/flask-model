@@ -37,7 +37,7 @@ def index():
     return "Okay!!"
 
 
-@app.post("/predict")
+@app.post("/predict", methods=["POST"])
 def predict():
     data = request.get_json()
     symptoms = data["symptoms"]
