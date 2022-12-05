@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from flask_cors import CORS
+import re
 
 app = Flask(__name__)
 CORS(app)
@@ -41,7 +42,11 @@ def index():
 def predict():
     data = request.get_json()
     symptoms = data["symptoms"]
-    pred = predictDisease(symptoms)
+    string = ""
+    for s in symptoms:
+        string += "," + s
+    string = re.sub("^,", "", string)
+    pred = predictDisease(string)
     print(pred)
     return pred["final_prediction"]
 
